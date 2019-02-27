@@ -1,0 +1,17 @@
+SPIDER = '{{ project.spider_name }}'
+
+START_URS = ['{{ project.spiderSettings.start_url }}', ]
+
+ALLOWED_DOMAINS = ['{{ project.spiderSettings.allowed_domains }}']
+
+COLLECTION = '{{ project.spiderSettings.collection }}'
+
+ITEM = {
+{% for item in project.spiderItem %}
+    '{{ item.keyword }}': {
+        'method': '{{ item.method }}',
+        'args': '{{ item.args }}',
+        {% if item.re %}'re': '{{ item.re }}',{% endif %}
+    },
+{% endfor %}
+}

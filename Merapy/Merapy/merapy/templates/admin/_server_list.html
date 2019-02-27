@@ -1,0 +1,55 @@
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Server Name</th>
+        <th>IP</th>
+        <th>Scrapy Port</th>
+        <th>Status</th>
+        <th>Projects</th>
+        <th>Option</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for server in servers %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ server.server_name }}</td>
+            <td>{{ server.server_ip }}</td>
+            <td>{{ server.scrapyd_port }}</td>
+            <td>{{ server.server_status }}</td>
+            <td>{{ server.project_num }}</td>
+            <td><a class="btn btn-danger btn-xs" href="{{ url_for('admin.delete', server_id = server.id) }}">delete</a></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<div class="hr-line-dashed"></div>
+<form method="post" class="form-horizontal" role="form">
+    {{ form.csrf_token }}
+    <div class="form-group">
+        {{ form_field2(form.server_name) }}
+    </div>
+    <div class="hr-line-dashed"></div>
+    <div class="form-group">
+        {{ form_field2(form.server_ip) }}
+    </div>
+    <div class="hr-line-dashed"></div>
+    <div class="form-group">
+        {{ form_field2(form.scrapyd_port) }}
+    </div>
+    <div class="hr-line-dashed"></div>
+    <div class="form-group">
+        {{ form_field2(form.username) }}
+    </div>
+    <div class="hr-line-dashed"></div>
+    <div class="form-group">
+        {{ form_field2(form.password) }}
+    </div>
+    <div class="hr-line-dashed"></div>
+    <div class="form-group">
+        <div class="col-sm-4 col-sm-offset-2">
+            {{ form.submit(class="btn btn-primary") }}
+        </div>
+    </div>
+</form>

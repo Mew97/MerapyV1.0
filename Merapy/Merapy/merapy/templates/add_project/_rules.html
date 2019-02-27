@@ -1,0 +1,50 @@
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Restrict_xpaths</th>
+        <th>Allow</th>
+        <th>Callback</th>
+        <th>Follow</th>
+        <th>Option</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for rule in rules %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ rule.restrict_xpaths }}</td>
+            <td>{{ rule.allow }}</td>
+            <td>{{ rule.callback }}</td>
+            <td>{{ rule.follow }}</td>
+            <td><a class="btn btn-danger btn-xs" href="{{ url_for('add_project.delete_rules', rule_id=rule.id) }}">delete</a></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<div class="hr-line-dashed"></div>
+<form role="form" method="post">
+    {{ form_rules.csrf_token }}
+    <div class="row">
+        <div class="form-group col-md-1">
+            <label class="control-label" style="line-height: 34px">Edit:</label>
+        </div>
+        <div class="form-group col-md-4">
+            {{ form_rules.restrict_xpaths }}
+        </div>
+        <div class="form-group col-md-2">
+            {{ form_rules.allow }}
+        </div>
+        <div class="form-group col-md-2">
+            <label class="control-label" for="callback">Callback</label>
+            <input name="callback" type="checkbox" class="js-switch" />
+        </div>
+        <div class="form-group col-md-2">
+            <label class="control-label" for="follow">Follow</label>
+            <input name="follow" type="checkbox" class="js-switch_3" checked/>
+        </div>
+        <div class="form-group col-md-1">
+            {{ form_rules.submit2(class="btn btn-primary") }}
+        </div>
+    </div>
+</form>

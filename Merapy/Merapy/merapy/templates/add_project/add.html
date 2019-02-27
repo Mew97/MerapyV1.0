@@ -1,0 +1,104 @@
+{% extends 'base/base0.html' %}
+
+{% from 'macros/forms.html' import form_field1 %}
+
+{% block title %}Project{% endblock %}
+
+{% block extra_style0 %}
+    <link href="{{ url_for('static', filename='css/plugins/iCheck/custom.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css') }}"
+          rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/plugins/switchery/switchery.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <div class="wrapper wrapper-content animated fadeInUp">
+        {% include 'base/_refresh.html' %}
+        {% include 'base/_flash.html' %}
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Add Project Settings</h5>
+                        <div class="ibox-tools">
+                            {% if settings %}
+                                <a href="{{ url_for('add_project.delete_settings') }}">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                            {% endif %}
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        {% if settings %}
+                            {% include 'add_project/_setting.html' %}
+                        {% else %}
+                            {% include 'add_project/_setting_edit.html' %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Rules</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        {% include 'add_project/_rules.html' %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Items</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        {% include 'add_project/_items.html' %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col-md-4"></div>
+            <div class="col-md-2 form-group">
+                <a class="btn btn-primary" href="{{ url_for('add_project.confirm_settings') }}">Confirm and upload</a>
+            </div>
+            <div class="col-md-2 form-group">
+                <a class="btn btn-default" style="width: 148.19px"
+                   href="{{ url_for('add_project.delete_all_settings') }}">Reset</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extra_js1 %}
+    <script src="{{ url_for('static', filename='js/content.min.js') }}?v=1.0.0"></script>
+    <script src="{{ url_for('static', filename='js/plugins/datapicker/bootstrap-datepicker.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/plugins/switchery/switchery.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/plugins/iCheck/icheck.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/plugins/cropper/cropper.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/demo/form-advanced-demo.min.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $(".i-checks").iCheck({checkboxClass: "icheckbox_square-green", radioClass: "iradio_square-green",})
+        });
+    </script>
+    <script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
+{% endblock %}

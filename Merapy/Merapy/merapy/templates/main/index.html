@@ -1,0 +1,81 @@
+{% extends 'base/base0.html' %}
+
+{% block title %}Home{% endblock %}
+
+
+{% block content %}
+    <div class="wrapper wrapper-content animated fadeInUp">
+    <div class="row">
+    {% if current_user.is_admin %}
+        <div class="col-sm-3">
+    {% else %}
+        <div class="col-sm-4">
+    {% endif %}
+<div class="ibox float-e-margins">
+    <div class="ibox-title">
+        <span class="label label-success pull-right"><i class="fa fa-desktop"></i></span>
+        <h5>Projects</h5>
+    </div>
+    <div class="ibox-content" style="height: 100px">
+        <h1 class="no-margins">{{ projects_num }}</h1>
+        <div class="stat-percent font-bold text-success"><i class=""></i>
+        </div>
+        <small></small>
+    </div>
+</div>
+</div>
+    {% if current_user.is_admin %}
+        <div class="col-sm-3">
+    {% else %}
+        <div class="col-sm-4">
+    {% endif %}
+<div class="ibox float-e-margins">
+    <div class="ibox-title">
+        <span class="label label-info pull-right"><i class="fa fa-adjust"></i> </span>
+        <h5>Running</h5>
+    </div>
+    <div class="ibox-content" style="height: 100px">
+        <h1 class="no-margins">{{ running }}</h1>
+        <div class="stat-percent font-bold text-info"><i class=""></i>
+        </div>
+        <small></small>
+    </div>
+</div>
+</div>
+{% if current_user.is_admin %}
+    <div class="col-sm-3">
+{% else %}
+    <div class="col-sm-4">
+{% endif %}
+<div class="ibox float-e-margins">
+    <div class="ibox-title">
+        <span class="label label-primary pull-right"><i class="fa fa-database"></i> </span>
+        <h5>Data</h5>
+    </div>
+    <div class="ibox-content" style="height: 100px">
+        <h1 class="no-margins">{{ data }}</h1>
+        <div class="stat-percent font-bold text-navy"><i class=""></i>
+        </div>
+        <small></small>
+    </div>
+</div>
+</div>
+{% if current_user.is_admin %}
+    <div class="col-sm-3">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <span class="label label-danger pull-right"><i class="fa fa-user"></i> </span>
+                <h5>User</h5>
+            </div>
+            <div class="ibox-content" style="height: 100px">
+                <h1 class="no-margins">{{ user }}</h1>
+                <div class="stat-percent font-bold text-danger"><i class=""></i>
+                </div>
+                <small></small>
+            </div>
+        </div>
+    </div>
+{% endif %}
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+<table class="table table-striped">
+    <div class="tag-title">
+        <h4>Project rules</h4>
+    </div>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Restrict_xpaths</th>
+        <th>Allow</th>
+        <th>Callback</th>
+        <th>Follow</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for rule in rules %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ rule.restrict_xpaths }}</td>
+            <td>{{ rule.allow }}</td>
+            <td>{{ rule.callback }}</td>
+            <td>{{ rule.follow }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

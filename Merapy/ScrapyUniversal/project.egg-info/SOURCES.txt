@@ -1,0 +1,16 @@
+setup.py
+ScrapyUniversal/__init__.py
+ScrapyUniversal/custom_settings.py
+ScrapyUniversal/items.py
+ScrapyUniversal/loaders.py
+ScrapyUniversal/middlewares.py
+ScrapyUniversal/pipelines.py
+ScrapyUniversal/rules.py
+ScrapyUniversal/settings.py
+ScrapyUniversal/spiders/__init__.py
+ScrapyUniversal/spiders/universal.py
+project.egg-info/PKG-INFO
+project.egg-info/SOURCES.txt
+project.egg-info/dependency_links.txt
+project.egg-info/entry_points.txt
+project.egg-info/top_level.txt

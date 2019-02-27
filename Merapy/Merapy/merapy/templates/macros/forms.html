@@ -1,0 +1,34 @@
+{% macro form_field(field) %}
+    {{ field(**kwargs) }}
+    {% if field.errors %}
+        {% for error in field.errors %}
+            <br><small style="color: red">{{ error }}</small>
+        {% endfor %}
+    {% endif %}
+{% endmacro %}
+
+{% macro form_field1(field) %}
+    {{ field.label(class="col-sm-2 control-label") }}
+    <div class="col-sm-9">
+    {{ field(class="form-control",**kwargs) }}
+    <span class="help-block m-b-none">{{ field.description }}</span>
+    {% if field.errors %}
+        {% for error in field.errors %}
+            <br><small style="color: red">{{ error }}</small>
+        {% endfor %}
+    {% endif %}
+    </div>
+{% endmacro %}
+
+{% macro form_field2(field) %}
+    {{ field.label(class="col-sm-2 control-label") }}
+    <div class="col-sm-3">
+    {{ field(class="form-control",**kwargs) }}
+    <span class="help-block m-b-none">{{ field.description }}</span>
+    {% if field.errors %}
+        {% for error in field.errors %}
+            <br><small style="color: red">{{ error }}</small>
+        {% endfor %}
+    {% endif %}
+    </div>
+{% endmacro %}

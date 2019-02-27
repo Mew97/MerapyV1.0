@@ -1,0 +1,8 @@
+[settings]
+default = ScrapyUniversal.settings
+
+[deploy]
+url = http://{{ project.spiderServer.server_ip }}:{{ project.spiderServer.scrapyd_port }}/
+project = {{ project.project_name }}
+username = {{ project.spiderServer.username }}
+password = {{ project.spiderServer.password }}

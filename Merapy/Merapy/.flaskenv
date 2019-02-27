@@ -1,0 +1,2 @@
+FLASK_APP=merapy
+FLASK_ENV=development

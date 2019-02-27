@@ -1,0 +1,25 @@
+<table class="table table-striped">
+    <div class="tag-title">
+        <h4>Project settings</h4>
+    </div>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Keyword</th>
+        <th>Method</th>
+        <th>Args</th>
+        <th>Re</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for item in items %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ item.keyword }}</td>
+            <td>{{ item.method }}</td>
+            <td>{{ item.args }}</td>
+            <td>{{ item.re }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}{% endblock %} - Merapy</title>
+
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link href="{{ url_for('static', filename='css/bootstrap.min14ed.css') }}?v=3.3.6" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/font-awesome.min93e3.css') }}?v=4.4.0" rel="stylesheet">
+
+    {% block extra_style0 %}{% endblock %}
+
+    <link href="{{ url_for('static', filename='css/animate.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.min862f.css') }}?v=4.1.0" rel="stylesheet">
+
+    {% block extra_style1 %}{% endblock %}
+
+</head>
+
+{% block body %}
+<body class="gray-bg">
+
+{% block content %}{% endblock %}
+
+{% block extra_js0 %}{% endblock %}
+<script src="{{ url_for('static', filename='js/jquery.min.js') }}?v=2.1.4"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}?v=3.3.6"></script>
+{% block extra_js1 %}{% endblock %}
+
+</body>
+{% endblock %}
+
+</html>

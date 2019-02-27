@@ -1,0 +1,91 @@
+{% extends 'base/base0.html' %}
+
+{% block title %}Client{% endblock %}
+
+{% block extra_style0 %}
+    <link href="{{ url_for('static', filename='css/plugins/footable/footable.core.css') }}?v=3.3.6" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <div class="wrapper wrapper-content animated fadeInRight">
+        {% include 'base/_refresh.html' %}
+        {% include 'base/_flash.html' %}
+        {% for user in project_data %}
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>{{ user }}'s data</h5>
+
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        {% if project_data[user] %}
+                        <input type="text" class="form-control input-sm m-b-xs" id="filter"
+                               placeholder="search for...">
+
+                        <table class="footable table table-stripped" data-page-size="5" data-filter=#filter>
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>DB Type</th>
+                                <th>DB Url</th>
+                                <th>collection</th>
+                                <th>Options</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for projects in project_data[user] %}
+                                <tr class="gradeA">
+                                    <td>{{ loop.index }}</td>
+                                    <td><a style="color: inherit" href="{{ url_for('project_info.query', projects_id=projects.id) }}">{{ projects.project_name }}</a></td>
+                                    <td>{{ projects.spiderSettings.item_pipelines }}</td>
+                                    <td>{{ projects.spiderSettings.db_url }}</td>
+                                    <td>{{ projects.spiderSettings.collection }}</td>
+                                    <td>
+                                        <a class="btn btn-primary btn-rounded btn-sm" href="{{ url_for('data_view.info', project_id=projects.id) }}">view</a>
+                                        <a class="btn btn-primary btn-rounded btn-sm" href="http://spiderdownload.oss-cn-shanghai.aliyuncs.com/download/{{ projects.project_name }}.txt">Down</a>
+                                        <a class="btn btn-danger btn-rounded btn-sm" href="{{ url_for('data_view.delete', project_id=projects.id) }}">Delete</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <td colspan="5">
+                                    <ul class="pagination pull-right"></ul>
+                                </td>
+                            </tr>
+                            </tfoot>
+                        </table>
+                        {% else %}
+                            <div class="row text-center">
+                                <h3>No Data</h3><br>
+                                <h4>Please run any spider first</h4>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+
+{% block extra_js1 %}
+    <script src="{{ url_for('static', filename='js/plugins/footable/footable.all.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/content.min.js') }}?v=1.0.0"></script>
+    <script>
+        $(document).ready(function () {
+            $(".footable").footable();
+            $(".footable2").footable()
+        });
+    </script>
+    <script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
+{% endblock %}

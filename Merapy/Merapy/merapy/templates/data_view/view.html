@@ -1,0 +1,85 @@
+{% extends 'base/base0.html' %}
+
+{% block title %}DataView{% endblock %}
+
+{% block extra_style0 %}
+    <link href="{{ url_for('static', filename='css/plugins/dataTables/dataTables.bootstrap.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <div class="wrapper wrapper-content animated fadeInRight">
+        {% include 'base/_refresh.html' %}
+        {% include 'base/_flash.html' %}
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>{{ name }}'s data</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <table class="table table-striped table-bordered table-hover dataTables-example" style="table-layout: fixed">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                {% for key in key %}
+                                    <th>{{ key }}</th>
+                                {% endfor %}
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for item in data %}
+                                <tr class="gradeA">
+                                    <td>{{ loop.index }}</td>
+                                    {% for key in item %}
+                                        <td style="width: 100%; word-break: keep-all; white-space: nowrap; overflow: hidden; text-overflow: ellipsis" title="{{ item[key] }}">
+                                            {{ item[key] }}
+                                        </td>
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block extra_js1 %}
+    <script src="{{ url_for('static', filename='js/plugins/jeditable/jquery.jeditable.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/plugins/dataTables/jquery.dataTables.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/plugins/dataTables/dataTables.bootstrap.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/content.min.js') }}?v=1.0.0"></script>
+    <script>
+        $(document).ready(function () {
+            $(".dataTables-example").dataTable();
+            var oTable = $("#editable").dataTable();
+            oTable.$("td").editable("http://www.zi-han.net/theme/example_ajax.php", {
+                "callback": function (sValue, y) {
+                    var aPos = oTable.fnGetPosition(this);
+                    oTable.fnUpdate(sValue, aPos[0], aPos[1])
+                },
+                "submitdata": function (value, settings) {
+                    return {
+                        "row_id": this.parentNode.getAttribute("id"),
+                        "column": oTable.fnGetPosition(this)[2]
+                    }
+                },
+                "width": "90%",
+                "height": "100%"
+            })
+        });
+
+        function fnClickAddRow() {
+            $("#editable").dataTable().fnAddData(["Custom row", "New row", "New row", "New row", "New row"])
+        };
+    </script>
+    <script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
+{% endblock %}

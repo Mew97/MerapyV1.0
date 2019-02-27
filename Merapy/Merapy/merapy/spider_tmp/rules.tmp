@@ -1,0 +1,9 @@
+from scrapy.linkextractors import LinkExtractor
+from scrapy.spiders import Rule
+
+rules = (
+    {% for rule in project.spiderRules %}
+    Rule(LinkExtractor(restrict_xpaths='{{ rule.restrict_xpaths }}', {% if rule.allow %}allow='{{ rule.allow }}', {% endif %}),
+         {% if rule.callback %}callback='parse_item', {% endif %}follow={{ rule.follow }}, ),
+    {% endfor %}
+)

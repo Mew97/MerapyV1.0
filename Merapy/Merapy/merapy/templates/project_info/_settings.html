@@ -1,0 +1,61 @@
+<form class="form-horizontal">
+    <div class="tag-title">
+        <h4>Project settings</h4>
+    </div>
+    <div class="hr-line-dashed"></div>
+    <div class="form-group">
+        {{ form.project_name.label(class="col-sm-2 control-label") }}
+        <div class="col-sm-9">
+            <p class="form-control-static">{{ project.project_name }}</p>
+        </div>
+    </div>
+    <div class="hr-line-dashed"></div>
+    <div class="form-group">
+        {{ form.spider_name.label(class="col-sm-2 control-label") }}
+        <div class="col-sm-9">
+            <p class="form-control-static">{{ project.spider_name }}</p>
+        </div>
+    </div>
+    <div class="hr-line-dashed"></div>
+    <div class="form-group">
+        {{ form.start_url.label(class="col-sm-2 control-label") }}
+        <div class="col-sm-9">
+            <p class="form-control-static">{{ settings.start_url }}</p>
+        </div>
+    </div>
+    <div class="hr-line-dashed"></div>
+    <div class="form-group">
+        {{ form.allowed_domains.label(class="col-sm-2 control-label") }}
+        <div class="col-sm-9">
+            <p class="form-control-static">{{ settings.allowed_domains }}</p>
+        </div>
+    </div>
+    <div class="hr-line-dashed"></div>
+    <div class="form-group">
+        {{ form.item_pipelines.label(class="col-sm-2 control-label") }}
+        <div class="col-sm-9">
+            <p class="form-control-static">{{ settings.item_pipelines }}</p>
+        </div>
+    </div>
+    <div class="hr-line-dashed"></div>
+    <div class="form-group">
+        {{ form.db_url.label(class="col-sm-2 control-label") }}
+        <div class="col-sm-9">
+            <p class="form-control-static">{{ settings.db_url }}</p>
+        </div>
+    </div>
+    <div class="hr-line-dashed"></div>
+    <div class="form-group">
+        {{ form.collection.label(class="col-sm-2 control-label") }}
+        <div class="col-sm-9">
+            <p class="form-control-static">{{ settings.collection }}</p>
+        </div>
+    </div>
+    <div class="hr-line-dashed"></div>
+    <div class="form-group">
+        {{ form.dynamic.label(class="col-sm-2 control-label") }}
+        <div class="col-sm-9">
+            <p class="form-control-static">{{ settings.dynamic }}</p>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,53 @@
+{% extends 'base/base0.html' %}
+
+{% block title %}ProjectInfo{% endblock %}
+
+{% block extra_style0 %}
+    <link href="{{ url_for('static', filename='css/plugins/iCheck/custom.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css') }}"
+          rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/plugins/switchery/switchery.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <div class="wrapper wrapper-content animated fadeInUp">
+        {% include 'base/_refresh.html' %}
+        {% include 'base/_flash.html' %}
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>{{ project.project_name }}</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        {% include 'project_info/_settings.html' %}
+                        <div class="hr-line-dashed"></div>
+                        {% include 'project_info/_rules.html' %}
+                        <div class="hr-line-dashed"></div>
+                        {% include 'project_info/_items.html' %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extra_js1 %}
+    <script src="{{ url_for('static', filename='js/content.min.js') }}?v=1.0.0"></script>
+    <script src="{{ url_for('static', filename='js/plugins/datapicker/bootstrap-datepicker.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/plugins/switchery/switchery.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/plugins/iCheck/icheck.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/plugins/cropper/cropper.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/demo/form-advanced-demo.min.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $(".i-checks").iCheck({checkboxClass: "icheckbox_square-green", radioClass: "iradio_square-green",})
+        });
+    </script>
+    <script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends 'base/base0.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block extra_style0 %}
+    <style>
+    p {
+        font-size: 20px;
+    }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="wrapper wrapper-content animated fadeInRight">
+        {% include 'base/_refresh.html' %}
+        {% include 'base/_flash.html' %}
+        <div class="row">
+            <div class="col-ms-12">
+                <div class="wrapper wrapper-content animated fadeInUp">
+                    <div class="ibox-content m-b-sm border-bottom">
+                        <div class="p-xs">
+                            <h1><i class="fa fa-map"></i> 使用手册</h1>
+                        </div>
+                    </div>
+                    <div class="ibox-content forum-container">
+                        <div class="p-xs">
+                            <h2><i class="fa fa-arrow-circle-right"></i> 示例一</h2>
+                        </div>
+                        <div class="p-xs">
+                            <h3>以 <a href="http://tech.china.com/articles/" target="_blank">http://tech.china.com/articles/</a>为例</h3>
+                        </div>
+                        <div class="p-xs">
+                            <h3>步骤一:</h3>
+                            <p>点击左侧导航栏的project按钮添加一个新的项目</p>
+                            <p>自定义项目名，例如‘project1’</p>
+                            <p>自定义爬虫名，例如‘spider’</p>
+                            <p>填写start url,例如这里的http://tech.china.com/articles/</p>
+                            <p>填写Allowed Domains,就是允许爬取的主域名，这里就是tech.china.com</p>
+                            <img src="{{ url_for('static', filename='manual_img/step1.png') }}" width="100%" />
+                            <p>DB Type为数据源选择，目前仅支持MongoDB，Mysql将在后续开放</p>
+                            <p>DB Url为你所选择的数据源的地址形如‘mongodb://username:password@123.456.78.90:27017/admin’, 如果没有特殊的需求请默认</p>
+                            <p>Dynamic：如果你所要爬取的页面为纯静态页面，此项不用勾选，动态页面则需要勾选此项（勾选会降低爬取速度），如果不了解页面类型，请默认勾选</p>
+                            <img src="{{ url_for('static', filename='manual_img/step1_.png') }}" width="50%" />
+                            <p>点击Add保存设置</p>
+                            <h3>步骤二:</h3>
+                            <p>此项为爬取页面中链接的解析规则（可以实现深度爬取），如果只爬取当前页面（start_url）中内容或则不太明白的可以先跳过此步骤</p>
+                            <P>下面以提取每一页中的‘下一页’为例进行演示:</P>
+                            <p>在浏览器中右键‘检查’查看源码，可以发现‘下一页’按钮在位于id=pageStyle的div中含有‘下一页’文字的a标签中</p>
+                            <p>所以Restrict_xpaths填写为： //div[@id="pageStyle"]//a[contains(., "下一页")]</p>
+                            <img src="{{ url_for('static', filename='manual_img/step2_1.png') }}" width="100%" />
+                            <img src="{{ url_for('static', filename='manual_img/step2.png') }}" width="85%"/>
+                            <br><br>
+                            <p>勾选callback对下一页也进行解析，同时勾选follow继续往后爬取下一页</p>
+                            <p>点击Add添加这一条规则，这样就实现了该页面两百多页的爬取</p>
+                            <h3>步骤三：</h3>
+                            <p>下面添加页面内容的解析规则，也就是你需要爬取的内容</p>
+                            <p>例如每篇文章的标题，给字段起一个名字例如‘title’ 然后查看标题的节点位置如下图, 选择xpath选择器，节点为：//div[@class='conR']/h2/a/text()</p>
+                            <img src="{{ url_for('static', filename='manual_img/step3.png') }}" width="100%" />
+                            <img src="{{ url_for('static', filename='manual_img/step3_1.png') }}" width="85%" />
+                            <p>点击Add添加</p>
+                            <p>同样，还可以选择每篇文章的详情简介</p>
+                            <img src="{{ url_for('static', filename='manual_img/step3_2.png') }}" width="100%" />
+                            <p>起名‘text’，选择器为xpath，节点为：//div[@class='conR']/div[@class='conR_txt']/a/text() </p>
+                            <p>继续点击add添加，最终如下图所示</p>
+                            <img src="{{ url_for('static', filename='manual_img/step3_3.png') }}" width="85%" />
+                            <h3>步骤四：</h3>
+                            <p>现在，点击confirm and upload按钮（上传可能会需要一点时间），你就拥有一个属于自己的爬虫项目了</p>
+                            <img src="{{ url_for('static', filename='manual_img/step4.png') }}" width="85%" />
+                            <p>出现提示表示上传成功!</p>
+                            <img src="{{ url_for('static', filename='manual_img/step4_1.png') }}" width="85%" />
+                            <h3>步骤五：</h3>
+                            <p>点击右侧导航栏的client，现在你可以看到你刚刚添加的项目了，如果没有请点击右侧的刷新按钮, 然后点击start开始运行你的爬虫项目</p>
+                            <img src="{{ url_for('static', filename='manual_img/step5.png') }}" width="100%" />
+                            <p>可以看到你的项目已经开始运行爬取数据了，点击右侧刷新按钮可以检查你的爬虫status，直到出现finished表示数据爬取完毕（两百多页大概需要等待3分钟）</p>
+                            <img src="{{ url_for('static', filename='manual_img/step5_1.png') }}" width="100%" />
+                            <h3>步骤六：</h3>
+                            <p>等待爬虫的status出现finished之后，点击左侧侧导航栏Data View按钮（可能会需要1~2秒等待时间用于数据传输），可以看到刚刚爬取的数据结果</p>
+                            <img src="{{ url_for('static', filename='manual_img/step6.png') }}" width="100%" />
+                            <p>点击View即可预览爬到的数据，Down即可下载txt文本</p>
+                            <img src="{{ url_for('static', filename='manual_img/step6_1.png') }}" width="100%" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
